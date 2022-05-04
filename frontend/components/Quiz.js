@@ -45,7 +45,7 @@ export function Quiz(props) {
 const mapStateToProps = state =>{
   return {
     quiz: state.quiz,
-    selectedAnswer: state.SelectedAnswer
+    selectedAnswer: state.selectedAnswer
   }
 }
 export default connect(mapStateToProps, actionCreators)(Quiz)

@@ -95,7 +95,7 @@ export function postAnswer(quiz_id, answer_id) {
     // - Dispatch the fetching of the next quiz
   }
 }
-export function postQuiz() {
+export function postQuiz(form) {
   return function (dispatch) {
     const payload = {
       question_text: form.newQuestion,
