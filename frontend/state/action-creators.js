@@ -105,7 +105,7 @@ export function postQuiz() {
     axios.post(`${URL}/new`, payload)
     // On successful POST:
     .then(res => {
-      dispatch(setMessage(`Congrasts: "${res.data.question}" is a great question!`))
+      dispatch(setMessage(`Congrats: "${res.data.question}" is a great question!`))
       dispatch(resetForm())
     })
     .catch(err =>{
