@@ -63,8 +63,17 @@ export function resetForm() {
 export function fetchQuiz() {
   return function (dispatch) {
     // First, dispatch an action to reset the quiz state (so the "Loading next quiz..." message can display)
+    dispatch(setQuiz(null))
     // On successful GET:
     // - Dispatch an action to send the obtained quiz to its state
+    axios.get(`${URL}/next`)
+    .then(res => {
+      dispatch(setQuiz(res.data))
+    })
+    .catch(err=>{
+      console.error(err)
+      dispatch(setMessage(err.message))
+    })
   }
 }
 export function postAnswer() {
