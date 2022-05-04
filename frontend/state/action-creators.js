@@ -10,6 +10,7 @@ import{
 } from "./action-types"
 
 import axios from "axios"
+import { createResponseComposition } from "msw"
 
 const URL = 'http://localhost:9000/api/quiz'
 
@@ -96,7 +97,21 @@ export function postAnswer(quiz_id, answer_id) {
 }
 export function postQuiz() {
   return function (dispatch) {
+    const payload = {
+      question_text: form.newQuestion,
+      true_answer_text: form.newTrueAnswer,
+      false_answer_text: form.newFalseAnswer
+    }
+    axios.post(`${URL}/new`, payload)
     // On successful POST:
+    .then(res => {
+      dispatch(setMessage(`Congrasts: "${res.data.question}" is a great question!`))
+      dispatch(resetForm())
+    })
+    .catch(err =>{
+      console.error(err)
+      dispatch(setMessage(err.message))
+    })
     // - Dispatch the correct message to the the appropriate state
     // - Dispatch the resetting of the form
   }
