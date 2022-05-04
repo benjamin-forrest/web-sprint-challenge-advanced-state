@@ -1,17 +1,63 @@
 // ❗ You don't need to add extra action creators to achieve MVP
-export function moveClockwise() { }
+import{
+  MOVE_CLOCKWISE,
+  MOVE_COUNTERCLOCKWISE,
+  SET_INFO_MESSAGE,
+  SET_QUIZ_INTO_STATE,
+  SET_SELECTED_ANSWER,
+  INPUT_CHANGE,
+  RESET_FORM
+} from "./action-types"
 
-export function moveCounterClockwise() { }
+import axios from "axios"
 
-export function selectAnswer() { }
+const URL = 'http://localhost:9000/api/quiz'
 
-export function setMessage() { }
+export function moveClockwise() { 
+  return { 
+    type: MOVE_CLOCKWISE
+  }
+ }
 
-export function setQuiz() { }
+export function moveCounterClockwise() {  
+  return { 
+    type: MOVE_COUNTERCLOCKWISE
+  }
+}
 
-export function inputChange() { }
+export function selectAnswer(answerId) { 
+  return { 
+    type: SET_SELECTED_ANSWER, 
+    payload: answerId
+  }
+ }
 
-export function resetForm() { }
+export function setMessage(message) { 
+  return {
+    type: SET_INFO_MESSAGE, 
+    payload: message
+  }
+ }
+
+export function setQuiz(quiz) { 
+  return {
+    type: SET_QUIZ_INTO_STATE, 
+    payload: quiz
+  }
+}
+
+export function inputChange({id, value}) {
+  return { 
+    type: INPUT_CHANGE, 
+    payload: {id, value}
+  }
+ }
+
+export function resetForm() {
+  return {
+    type: RESET_FORM
+  }
+ }
 
 // ❗ Async action creators
 export function fetchQuiz() {
